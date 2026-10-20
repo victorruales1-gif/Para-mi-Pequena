@@ -21,7 +21,7 @@ const fotosNosotros = [
 // GALERÍA: IMÁGENES QUE ME RECUERDAN A TI
 // ==========================================
 const imagenesRecuerdos = [
-    { imagen: "https://i.imgur.com/xyz3BRF.jpg" },
+    { imagen: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
     { imagen: "https://i.imgur.com/emfM6li.jpg" },
     { imagen: "https://i.imgur.com/B1mID8S.jpg" },
     { imagen: "https://i.imgur.com/ElazJlW.jpg" }
