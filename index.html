@@ -42,6 +42,7 @@
             <button class="boton-menu" onclick="mostrarSeccion('lugares')">🗺️ Lugares</button>
             <button class="boton-menu" onclick="mostrarSeccion('recuerdos')">🌟 Recuerdos</button>
             <button class="boton-menu" onclick="mostrarSeccion('promesas')">💛 Promesas</button>
+            <button class="boton-menu" onclick="mostrarSeccion('galeria')">🖼️ Galería</button>
         </div>
 
         <!-- ==========================================
@@ -59,7 +60,35 @@
     loading="lazy">
     </iframe>
 </div>
-            <div class="seccion">
+<!-- ==========================================
+     SECCIÓN: GALERÍA
+     ========================================== -->
+<div class="seccion-pagina" id="seccion-galeria">
+    <div class="seccion">
+        <h2>Nuestra Galería</h2>
+        <p class="nota-musical">Momentos que guardo y cosas que me recuerdan a ti...</p>
+        
+        <!-- Subsección 1: Fotos de ustedes -->
+        <div class="subseccion-galeria">
+            <h3 class="titulo-subseccion">📸 Nosotros</h3>
+            <p class="descripcion-subseccion">Los momentos que hemos compartido y los que vendrán...</p>
+            <div id="galeria-nosotros" class="grid-galeria">
+                <!-- Aquí se cargan las fotos desde JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Subsección 2: Imágenes que te recuerdan a ella -->
+        <div class="subseccion-galeria">
+            <h3 class="titulo-subseccion">💭 Lo que Me Recuerda a Ti</h3>
+            <p class="descripcion-subseccion">Pequeñas cosas que me hacen pensar en ti...</p>
+            <div id="galeria-recuerdos" class="grid-galeria">
+                <!-- Aquí se cargan las imágenes con poemas desde JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>      
+        
+        <div class="seccion">
                 <h2>Pequeñas Razones Para Pensar En Ti, Grandes Sentimientos</h2>
                 <p class="nota-musical">Un número nunca alcanzará para contarlas todas...</p>
                 <div class="mensaje-item">
