@@ -313,116 +313,7 @@ h2::after {
 }
 
 /* ==========================================
-   GALERÍA
-   ========================================== */
-#galeria {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-}
-
-#galeria img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 20px;
-    border: 3px solid #F0D080;
-    transition: all 0.3s ease;
-    margin: 0 auto;
-    display: block;
-    box-shadow: 0 4px 30px rgba(139, 30, 63, 0.08);
-}
-
-#galeria img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 40px rgba(139, 30, 63, 0.15);
-}
-
-/* ==========================================
-   AGREGAR PELÍCULAS
-   ========================================== */
-.agregar-pelicula {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.agregar-pelicula input {
-    flex: 1;
-    background-color: #FFF8E7;
-    color: #4A3F3F;
-    border: 1px solid #F0D080;
-    border-radius: 10px;
-    padding: 12px 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9em;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-
-.agregar-pelicula input:focus {
-    outline: none;
-    border-color: #8B1E3F;
-    box-shadow: 0 0 15px rgba(139, 30, 63, 0.1);
-}
-
-.agregar-pelicula button {
-    background-color: #8B1E3F;
-    color: #FFFFFF;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.agregar-pelicula button:hover {
-    background-color: #A52A4A;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(139, 30, 63, 0.2);
-}
-
-/* ==========================================
-   NOTAS MUSICALES
-   ========================================== */
-.nota-musical {
-    font-style: italic;
-    color: #A09888;
-    margin-bottom: 20px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1em;
-}
-
-/* ==========================================
-   FOOTER
-   ========================================== */
-footer {
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid #F0D080;
-    color: #A09888;
-    font-style: italic;
-    font-size: 0.9em;
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-@media (max-width: 600px) {
-    h1 { font-size: 2.8em; }
-    h2 { font-size: 2em; }
-    #contador-dias { font-size: 1.8em; }
-    .mensaje-item p { font-size: 1.1em; }
-    .boton-menu { font-size: 0.85em; padding: 8px 14px; }
-}
-
-/* ==========================================
-   GALERÍA DIVIDIDA
+   GALERÍA DIVIDIDA (CORREGIDA)
    ========================================== */
 .subseccion-galeria {
     margin-bottom: 50px;
@@ -457,7 +348,6 @@ footer {
     padding: 10px;
 }
 
-/* Tarjeta de la galería */
 .tarjeta-galeria {
     background-color: #FFFFFF;
     border-radius: 15px;
@@ -513,23 +403,95 @@ footer {
     margin-top: 5px;
 }
 
-/* Para la subsección de fotos (sin poema) */
 .tarjeta-galeria.solo-foto .poema {
     display: none;
 }
 
 .tarjeta-galeria.solo-foto img {
-    height: 300px; /* Un poco más altas para que luzcan mejor */
+    height: 300px;
     object-fit: cover;
 }
+
+/* ==========================================
+   AGREGAR PELÍCULAS
+   ========================================== */
+.agregar-pelicula {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-/* Responsive */
+.agregar-pelicula input {
+    flex: 1;
+    background-color: #FFF8E7;
+    color: #4A3F3F;
+    border: 1px solid #F0D080;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.agregar-pelicula input:focus {
+    outline: none;
+    border-color: #8B1E3F;
+    box-shadow: 0 0 15px rgba(139, 30, 63, 0.1);
+}
+
+.agregar-pelicula button {
+    background-color: #8B1E3F;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.agregar-pelicula button:hover {
+    background-color: #A52A4A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(139, 30, 63, 0.2);
+}
+
+/* ==========================================
+   NOTAS MUSICALES Y FOOTER
+   ========================================== */
+.nota-musical {
+    font-style: italic;
+    color: #A09888;
+    margin-bottom: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #F0D080;
+    color: #A09888;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
 @media (max-width: 600px) {
+    h1 { font-size: 2.8em; }
+    h2 { font-size: 2em; }
+    #contador-dias { font-size: 1.8em; }
+    .mensaje-item p { font-size: 1.1em; }
+    .boton-menu { font-size: 0.85em; padding: 8px 14px; }
     .grid-galeria {
         grid-template-columns: 1fr;
     }
-    
     .titulo-subseccion {
         font-size: 1.6em;
     }
