@@ -420,3 +420,115 @@ footer {
     .mensaje-item p { font-size: 1.1em; }
     .boton-menu { font-size: 0.85em; padding: 8px 14px; }
 }
+
+/* ==========================================
+   GALERÍA DIVIDIDA
+   ========================================== */
+.subseccion-galeria {
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    border: 1px solid #F0D080;
+    box-shadow: 0 4px 20px rgba(139, 30, 63, 0.05);
+}
+
+.titulo-subseccion {
+    font-family: 'Dancing Script', cursive;
+    color: #8B1E3F;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.descripcion-subseccion {
+    font-family: 'Cormorant Garamond', serif;
+    color: #A09888;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+.grid-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Tarjeta de la galería */
+.tarjeta-galeria {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(139, 30, 63, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid #F0D080;
+}
+
+.tarjeta-galeria:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(139, 30, 63, 0.15);
+    border-color: #8B1E3F;
+}
+
+.tarjeta-galeria img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-galeria:hover img {
+    transform: scale(1.05);
+}
+
+.tarjeta-galeria .poema {
+    padding: 15px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1em;
+    color: #4A3F3F;
+    line-height: 1.5;
+    text-align: center;
+    font-style: italic;
+    border-top: 1px solid #F0D080;
+    background-color: #FFF8E7;
+}
+
+.tarjeta-galeria .poema::before {
+    content: '❝';
+    color: #8B1E3F;
+    font-size: 1.5em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tarjeta-galeria .poema::after {
+    content: '❞';
+    color: #8B1E3F;
+    font-size: 1.5em;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Para la subsección de fotos (sin poema) */
+.tarjeta-galeria.solo-foto .poema {
+    display: none;
+}
+
+.tarjeta-galeria.solo-foto img {
+    height: 250px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .grid-galeria {
+        grid-template-columns: 1fr;
+    }
+    
+    .titulo-subseccion {
+        font-size: 1.6em;
+    }
+}
