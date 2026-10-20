@@ -519,7 +519,9 @@ footer {
 }
 
 .tarjeta-galeria.solo-foto img {
-    height: 250px;
+    height: 300px; /* Un poco más altas para que luzcan mejor */
+    object-fit: cover;
+}
 }
 
 /* Responsive */
