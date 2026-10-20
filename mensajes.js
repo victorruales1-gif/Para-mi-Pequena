@@ -1,18 +1,19 @@
 // ==========================================
-// ¡HOLA! EDITA AQUÍ PARA AGREGAR CONTENIDO NUEVO
+// FECHA ESPECIAL
 // ==========================================
-
-// 1. FECHA ESPECIAL
 const fechaEspecial = new Date('2026-05-11').getTime();
 
-// 2. GALERÍA: FOTOS DE USTEDES
+// ==========================================
+// GALERÍA: FOTOS DE USTEDES
+// ==========================================
 const fotosNosotros = [
-    {
-    }
+    
     // Agrega más fotos de ustedes aquí, separadas por coma
 ];
 
-// 3. GALERÍA: IMÁGENES QUE ME RECUERDAN A TI
+// ==========================================
+// GALERÍA: IMÁGENES QUE ME RECUERDAN A TI
+// ==========================================
 const imagenesRecuerdos = [
     { imagen: "https://i.imgur.com/xyz3BRF.jpg" },
     { imagen: "https://i.imgur.com/emfM6li.jpg" },
@@ -20,7 +21,9 @@ const imagenesRecuerdos = [
     { imagen: "https://i.imgur.com/ElazJlW.jpg" }
 ];
 
-// 4. TUS POEMAS Y MENSAJES (Cartas)
+// ==========================================
+// TUS POEMAS Y MENSAJES (Cartas)
+// ==========================================
 const mensajes = [
     {
         fecha: "⭐",
@@ -55,7 +58,7 @@ function cargarGaleriaNosotros() {
     let html = '';
     fotosNosotros.forEach(function(foto) {
         html += '<div class="tarjeta-galeria solo-foto">';
-        html += '<img src="' + foto.imagen + '" alt="' + foto.descripcion + '">';
+        html += '<img src="' + foto.imagen + '" alt="' + foto.descripcion + '" onclick="abrirLightbox(\'' + foto.imagen + '\')" style="cursor: pointer;">';
         html += '</div>';
     });
     contenedor.innerHTML = html;
@@ -68,7 +71,7 @@ function cargarGaleriaRecuerdos() {
     let html = '';
     imagenesRecuerdos.forEach(function(item) {
         html += '<div class="tarjeta-galeria solo-foto">';
-        html += '<img src="' + item.imagen + '" alt="Recuerdo">';
+        html += '<img src="' + item.imagen + '" alt="Recuerdo" onclick="abrirLightbox(\'' + item.imagen + '\')" style="cursor: pointer;">';
         html += '</div>';
     });
     contenedor.innerHTML = html;
@@ -86,6 +89,25 @@ function cargarMensajes() {
         html += '</div>';
     });
     contenedor.innerHTML = html;
+}
+
+// ==========================================
+// LIGHTBOX (IMAGEN AGRANDADA)
+// ==========================================
+function abrirLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    if (lightbox && img) {
+        img.src = src;
+        lightbox.classList.add('activo');
+    }
+}
+
+function cerrarLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('activo');
+    }
 }
 
 // ==========================================
