@@ -33,7 +33,128 @@ const mensajes = [
         texto: "Hace no mucho ni siquiera nos conocíamos.\nÉramos simplemente dos almas caminando sin vernos.\n\nY entonces, un día, sin previo aviso, nos encontramos en el mismo camino.\n\nA veces dicen que ciertos encuentros te cambian la vida; este es uno de ellos.\n\nEs extraño, lo sé. Cuanto más te conozco, más olvido cómo era mi vida sin ti.\n\nMe haces una mejor persona y por eso te estoy agradecido.\n\nPorque si amar es un pecado, que el mundo me juzgue y me pierda por toda la eternidad."
     }
 ];
+// ==========================================
+// GALERÍA: FOTOS DE USTEDES
+// ==========================================
+const fotosNosotros = [
+    {
+        imagen: "https://i.imgur.com/h1lB69E.jpg",
+        descripcion: "El día que todo comenzó..."
+    },
+    {
+        imagen: "https://i.imgur.com/OTRA_FOTO.jpg",
+        descripcion: "Nuestro primer recuerdo juntos"
+    }
+    // Agrega más fotos aquí
+];
 
+// ==========================================
+// GALERÍA: IMÁGENES QUE ME RECUERDAN A TI
+// ==========================================
+const imagenesRecuerdos = [
+    {
+        imagen: "https://i.imgur.com/xyz3BRF.jpeg"
+    },
+    {
+        imagen: "https://i.imgur.com/emfM6li.jpeg"
+    },
+    {
+        imagen: "https://i.imgur.com/B1mID8S.jpeg"
+    },
+    {
+        imagen: "https://i.imgur.com/ElazJlW.jpeg"
+    }
+];
+
+// ==========================================
+// FUNCIONES PARA CARGAR LA GALERÍA
+// ==========================================
+function cargarGaleriaNosotros() {
+    const contenedor = document.getElementById('galeria-nosotros');
+    if (!contenedor) return;
+    
+    let html = '';
+    fotosNosotros.forEach(function(foto) {
+        html += '<div class="tarjeta-galeria solo-foto">';
+        html += '<img src="' + foto.imagen + '" alt="' + foto.descripcion + '">';
+        html += '</div>';
+    });
+    contenedor.innerHTML = html;
+}
+
+function cargarGaleriaRecuerdos() {
+    const contenedor = document.getElementById('galeria-recuerdos');
+    if (!contenedor) return;
+    
+    let html = '';
+    imagenesRecuerdos.forEach(function(item) {
+        // Como no queremos texto, solo agregamos la imagen
+        html += '<div class="tarjeta-galeria solo-foto">';
+        html += '<img src="' + item.imagen + '" alt="Recuerdo">';
+        html += '</div>';
+    });
+    contenedor.innerHTML = html;
+}
+
+// ==========================================
+// CARGAR AL INICIAR
+// ==========================================
+cargarGaleriaNosotros();
+cargarGaleriaRecuerdos();
+function cargarGaleriaRecuerdos() {
+    const contenedor = document.getElementById('galeria-recuerdos');
+    if (!contenedor) return;
+    
+    let html = '';
+    imagenesRecuerdos.forEach(function(item) {
+        // Como no queremos texto, solo agregamos la imagen
+        html += '<div class="tarjeta-galeria solo-foto">';
+        html += '<img src="' + item.imagen + '" alt="Recuerdo">';
+        html += '</div>';
+    });
+    contenedor.innerHTML = html;
+}
+
+// ==========================================
+// CARGAR AL INICIAR
+// ==========================================
+cargarGaleriaNosotros();
+cargarGaleriaRecuerdos();
+// ==========================================
+// FUNCIONES PARA CARGAR LA GALERÍA
+// ==========================================
+function cargarGaleriaNosotros() {
+    const contenedor = document.getElementById('galeria-nosotros');
+    if (!contenedor) return;
+    
+    let html = '';
+    fotosNosotros.forEach(function(foto) {
+        html += '<div class="tarjeta-galeria solo-foto">';
+        html += '<img src="' + foto.imagen + '" alt="' + foto.descripcion + '">';
+        html += '</div>';
+    });
+    contenedor.innerHTML = html;
+}
+
+function cargarGaleriaRecuerdos() {
+    const contenedor = document.getElementById('galeria-recuerdos');
+    if (!contenedor) return;
+    
+    let html = '';
+    imagenesRecuerdos.forEach(function(item) {
+        html += '<div class="tarjeta-galeria">';
+        html += '<img src="' + item.imagen + '" alt="Recuerdo">';
+        html += '<div class="poema">' + item.poema + '</div>';
+        html += '</div>';
+    });
+    contenedor.innerHTML = html;
+}
+
+// ==========================================
+// CARGAR AL INICIAR
+// ==========================================
+cargarGaleriaNosotros();
+cargarGaleriaRecuerdos();
 // ==========================================
 // NO TOQUES NADA DE AQUÍ PARA ABAJO
 // ==========================================
