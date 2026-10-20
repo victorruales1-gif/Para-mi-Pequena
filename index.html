@@ -42,47 +42,54 @@
             <button class="boton-menu" onclick="mostrarSeccion('lugares')">🗺️ Lugares</button>
             <button class="boton-menu" onclick="mostrarSeccion('recuerdos')">🌟 Recuerdos</button>
             <button class="boton-menu" onclick="mostrarSeccion('promesas')">💛 Promesas</button>
-            <button class="boton-menu" onclick="mostrarSeccion('galeria')">🖼️ Galería</button>
         </div>
 
         <!-- ==========================================
              SECCIÓN: INICIO
              ========================================== -->
-     <div class="seccion">
-    <h2>Canciones que sentimos</h2>
-    <p class="nota-musical">▶ Toca play y cierra los ojos...</p>
-    <iframe style="border-radius:12px" 
-    src="https://open.spotify.com/embed/playlist/4MY0eV06Hvm00LoVpBEjXk?utm_source=generator" 
-    width="100%" height="380" 
-    frameBorder="0" 
-    allowfullscreen="" 
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-    loading="lazy">
-    </iframe>
-</div>
-            <!-- GALERÍA DENTRO DE INICIO -->
+        <div id="seccion-inicio" class="seccion-pagina activa">
+            
+            <!-- PLAYLIST -->
+            <div class="seccion">
+                <h2>Canciones que sentimos</h2>
+                <p class="nota-musical">▶ Toca play y cierra los ojos...</p>
+                <iframe style="border-radius:12px" 
+                src="https://open.spotify.com/embed/playlist/4MY0eV06Hvm00LoVpBEjXk?utm_source=generator" 
+                width="100%" height="380" 
+                frameBorder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- GALERÍA -->
             <div class="seccion">
                 <h2>Nuestra Galería</h2>
                 <p class="nota-musical">Momentos que guardo y cosas que me recuerdan a ti...</p>
                 
+                <!-- Subsección 1: Fotos de ustedes -->
                 <div class="subseccion-galeria">
                     <h3 class="titulo-subseccion">📸 Nosotros</h3>
                     <p class="descripcion-subseccion">Los momentos que hemos compartido y los que vendrán...</p>
-                    <div id="galeria-nosotros" class="grid-galeria"></div>
+                    <div id="galeria-nosotros" class="grid-galeria">
+                        <!-- Aquí se cargan las fotos desde JavaScript -->
+                    </div>
                 </div>
                 
+                <!-- Subsección 2: Imágenes que te recuerdan a ella -->
                 <div class="subseccion-galeria">
                     <h3 class="titulo-subseccion">💭 Lo que Me Recuerda a Ti</h3>
                     <p class="descripcion-subseccion">Pequeñas cosas que me hacen pensar en ti...</p>
-                    <div id="galeria-recuerdos" class="grid-galeria"></div>
+                    <div id="galeria-recuerdos" class="grid-galeria">
+                        <!-- Aquí se cargan las imágenes desde JavaScript -->
+                    </div>
                 </div>
             </div>
-        
-    </div>
-</div>      
-        
-        <div class="seccion">
-                <h2>Pequeñas Razones Para Pensar En Ti, Grandes Sentimientos</h2>
+
+            <!-- RAZONES -->
+            <div class="seccion">
+                <h2>Pequeñas Razones, Grandes Sentimientos</h2>
                 <p class="nota-musical">Un número nunca alcanzará para contarlas todas...</p>
                 <div class="mensaje-item">
                     <p>1. Cuando veo un atardecer con colores que no sé describir</p>
@@ -116,7 +123,7 @@
         </div>
 
         <!-- ==========================================
-             SECCIÓN: PREGUNTAS (AHORA EN FIREBASE)
+             SECCIÓN: PREGUNTAS (FIREBASE)
              ========================================== -->
         <div id="seccion-preguntas" class="seccion-pagina">
             <div class="seccion">
@@ -136,7 +143,7 @@
         </div>
 
         <!-- ==========================================
-             SECCIÓN: MENSAJES
+             SECCIÓN: MENSAJES (FIREBASE)
              ========================================== -->
         <div id="seccion-mensajes" class="seccion-pagina">
             <div class="seccion">
@@ -288,7 +295,6 @@
         // CONTADOR DE DÍAS JUNTOS
         // ==========================================
         function cargarContadorDias() {
-            // Fecha de inicio: 11 de Mayo de 2026
             const fechaInicio = new Date('2026-05-11T00:00:00').getTime();
             const ahora = new Date().getTime();
             const diferencia = ahora - fechaInicio;
