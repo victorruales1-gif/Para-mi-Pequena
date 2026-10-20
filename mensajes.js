@@ -8,8 +8,6 @@ const fechaEspecial = new Date('2026-05-11').getTime();
 // 2. GALERÍA: FOTOS DE USTEDES
 const fotosNosotros = [
     {
-        imagen: "https://i.imgur.com/h1lB69E.jpg",
-        descripcion: "El día que todo comenzó..."
     }
     // Agrega más fotos de ustedes aquí, separadas por coma
 ];
