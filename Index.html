@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Pequeña ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <header>
+            <h1>Nuestro Espacio</h1>
+            <p class="subtitulo">Un rincón hecho para ti, para nosotros...</p>
+        </header>
+
+        <!-- CONTADOR DE DÍAS JUNTOS -->
+        <div class="contador-caja">
+            <h2 id="titulo-contador">Desde que te conocí...</h2>
+            <p id="contador-dias">Cargando...</p>
+            <p class="poesia-contador">Cada día a tu lado es un regalo que no sabía que necesitaba.</p>
+        </div>
+
+        <!-- MENSAJE SEGÚN LA HORA -->
+        <div class="mensaje-hora" style="text-align: center; padding: 15px; margin: 15px 0;">
+            <p id="saludo-hora" style="font-size: 1.3em; font-family: 'Cormorant Garamond', serif; color: #8B1E3F; font-style: italic; margin-bottom: 5px;"></p>
+            <p id="sub-saludo-hora" style="font-size: 1em; color: #A09888;"></p>
+        </div>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <div class="menu-navegacion">
+            <button class="boton-menu activo" onclick="mostrarSeccion('inicio')">🏠 Inicio</button>
+            <button class="boton-menu" onclick="mostrarSeccion('cartas')">💌 Cartas</button>
+            <button class="boton-menu" onclick="mostrarSeccion('preguntas')">❓ Preguntas</button>
+            <button class="boton-menu" onclick="mostrarSeccion('mensajes')">💬 Mensajes</button>
+            <button class="boton-menu" onclick="mostrarSeccion('peliculas')">🎬 Películas</button>
+            <button class="boton-menu" onclick="mostrarSeccion('lugares')">🗺️ Lugares</button>
+            <button class="boton-menu" onclick="mostrarSeccion('recuerdos')">🌟 Recuerdos</button>
+            <button class="boton-menu" onclick="mostrarSeccion('promesas')">💛 Promesas</button>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: INICIO
+             ========================================== -->
+        <div id="seccion-inicio" class="seccion-pagina activa">
+            <div class="seccion">
+                <h2>Canciones que siento por ti</h2>
+                <p class="nota-musical">▶ Toca play y cierra los ojos...</p>
+                <iframe style="border-radius:12px" 
+                src="https://open.spotify.com/embed/playlist/0cJ3wxP8aD23ZDpYJV9IVF?utm_source=generator" 
+                width="100%" height="380" 
+                frameBorder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+                </iframe>
+            </div>
+
+            <div class="seccion">
+                <h2>Cosas que Me Recuerdan a Ti</h2>
+                <div id="galeria"></div>
+            </div>
+
+            <div class="seccion">
+                <h2>Pequeñas Razones, Grandes Sentimientos</h2>
+                <p class="nota-musical">Un número nunca alcanzará para contarlas todas...</p>
+                <div class="mensaje-item">
+                    <p>1. Cuando veo un atardecer con colores que no sé describir</p>
+                    <p>2. Cuando escucho una canción sin buscarla y termina hablando de ti</p>
+                    <p>3. Cuando alguien dice tu nombre por casualidad y mi corazón se detiene un segundo</p>
+                    <p>4. Cuando el café me recuerda lo amargo que es no verte</p>
+                    <p>5. Cuando cierro los ojos y aparece tu sonrisa sin pedir permiso</p>
+                    <p>6. Cuando algo me hace reír y quiero contártelo antes que a nadie más</p>
+                    <p>7. Cuando el silencio me grita tu ausencia</p>
+                    <p>8. Cuando camino por la calle y veo algo que sé que te gustaría</p>
+                    <p>9. Cuando me preguntan por mi día y solo quiero hablar de ti</p>
+                    <p>10. Cuando el olor de la lluvia me transporta a un recuerdo que aún no vivimos</p>
+                    <p>11. Cuando veo parejas tomadas de la mano y pienso en cómo se sentiría contigo</p>
+                    <p>12. Cuando el reloj marca una hora cualquiera y me pregunto qué estarás haciendo</p>
+                    <p>13. Cuando una película, un libro o una frase me recuerda que el amor existe porque existes tú</p>
+                    <p>14. Cuando me despierto y mi primer pensamiento, sin querer, eres tú</p>
+                    <p>15. Cuando respiro... porque incluso en lo más simple, estás presente</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: CARTAS
+             ========================================== -->
+        <div id="seccion-cartas" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Cartas para Ti</h2>
+                <p class="nota-musical">Lo que te escribo cuando las palabras fluyen...</p>
+                <div id="lista-mensajes"></div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: PREGUNTAS (AHORA EN FIREBASE)
+             ========================================== -->
+        <div id="seccion-preguntas" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Preguntas que Me Hago Contigo</h2>
+                <p class="nota-musical">Escribe tus respuestas... ambos podremos verlas.</p>
+                
+                <div id="lista-preguntas">
+                    <p style="color: #A09888; font-style: italic;">Cargando preguntas...</p>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 15px; background-color: #FFF8E7; border-radius: 10px; border: 1px solid #F0D080;">
+                    <p style="font-family: 'Cormorant Garamond', serif; color: #8B1E3F; font-size: 1.2em; margin-bottom: 10px;">✏️ Agregar nueva pregunta:</p>
+                    <input type="text" id="nueva-pregunta" placeholder="Escribe una pregunta..." style="width: 100%; padding: 10px; border: 1px solid #F0D080; border-radius: 5px; background-color: #FFFFFF; margin-bottom: 10px; box-sizing: border-box;">
+                    <button onclick="agregarPregunta()" style="background-color: #8B1E3F; color: #FFFFFF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-weight: bold;">Agregar Pregunta</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: MENSAJES
+             ========================================== -->
+        <div id="seccion-mensajes" class="seccion-pagina">
+            <div class="seccion">
+                <h2>💌 Nuestros Mensajes</h2>
+                <p class="nota-musical">Escribe aquí lo que quieras... y quedará guardado para siempre.</p>
+                
+                <div class="pregunta-item" style="text-align: left;">
+                    <label style="font-family: 'Cormorant Garamond', serif; color: #8B1E3F; font-size: 1.2em; display: block; margin-bottom: 10px;">
+                        ✦ Tu mensaje...
+                    </label>
+                    <textarea id="mensaje-compartido" rows="5" placeholder="Escribe aquí lo que quieras decir..." style="width: 100%; background-color: #FFF8E7; color: #3D3D3D; border: 1px solid #F0D080; border-radius: 5px; padding: 12px; font-family: 'Cormorant Garamond', serif; font-size: 1.1em; resize: vertical; min-height: 80px; box-sizing: border-box;"></textarea>
+                    
+                    <div style="text-align: center; margin-top: 15px;">
+                        <button onclick="guardarMensajeCompartido()" style="background-color: #8B1E3F; color: #FFFFFF; border: none; padding: 12px 30px; font-family: 'Cormorant Garamond', serif; font-size: 1.2em; border-radius: 30px; cursor: pointer; font-weight: bold;">💛 Guardar mensaje</button>
+                    </div>
+                </div>
+                
+                <div id="lista-mensajes-compartidos" style="margin-top: 20px;">
+                    <p style="color: #A09888; font-style: italic;">Cargando mensajes...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: PELÍCULAS
+             ========================================== -->
+        <div id="seccion-peliculas" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Películas para Nuestras Noches</h2>
+                <p class="nota-musical">Agrega las películas o series que quieras ver conmigo...</p>
+                <div id="lista-peliculas">
+                    <div class="mensaje-item">
+                        <p>🎬 "Cuestión de Tiempo" — Porque el tiempo contigo es mi favorito.</p>
+                        <p>🎬 "Antes de Amanecer" — Para caminar y hablar sin parar.</p>
+                        <p>🎬 "La La Land" — Para cantar y soñar despiertos.</p>
+                        <p>🎬 "Up" — Para recordar que el amor es la aventura más grande.</p>
+                    </div>
+                </div>
+                <div class="agregar-pelicula" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <input type="text" id="nueva-pelicula" placeholder="Escribe una película o serie..." style="flex: 1; padding: 10px; border: 1px solid #F0D080; border-radius: 5px; background-color: #FFF8E7;" />
+                    <button onclick="agregarPelicula()" style="background-color: #8B1E3F; color: #FFFFFF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-weight: bold;">Agregar ➕</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: LUGARES
+             ========================================== -->
+        <div id="seccion-lugares" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Lugares que Mi Corazón Quiere Recorrer Contigo</h2>
+                <p class="nota-musical">El destino no importa si vamos de la mano...</p>
+                <div class="mensaje-item">
+                    <p>🌅 Ver el atardecer en una playa sin nombre</p>
+                    <p>☕ Un café en una calle escondida de París</p>
+                    <p>🌌 Contar estrellas en el desierto</p>
+                    <p>🎵 Bailar bajo la lluvia en cualquier ciudad</p>
+                    <p>🚗 Perdernos en una carretera sin GPS</p>
+                    <p>🏔️ Ver la nieve por primera vez juntos</p>
+                    <p>🎡 Un parque de diversiones para ser niños otra vez</p>
+                    <p>📚 Una librería antigua donde el tiempo se detenga</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: RECUERDOS
+             ========================================== -->
+        <div id="seccion-recuerdos" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Recuerdos que Aún No Hemos Vivido</h2>
+                <p class="nota-musical">Son promesas disfrazadas de sueños...</p>
+                <div class="mensaje-item">
+                    <p>🌅 Algún día veremos el amanecer sin haber dormido, solo hablando.</p>
+                    <p>☔ Algún día nos mojaremos bajo la lluvia sin importar el frío.</p>
+                    <p>🎂 Algún día celebraremos un año más sin creer lo rápido que pasa.</p>
+                    <p>📷 Algún día tendremos una foto juntos y diré: "así comenzó todo".</p>
+                    <p>❤️ Algún día, el contador dirá más días de los que podemos contar.</p>
+                    <p>🎵 Algún día bailaremos en la cocina sin música, solo por el gusto de estar juntos.</p>
+                    <p>✈️ Algún día nos perderemos en una ciudad desconocida y la haremos nuestra.</p>
+                    <p>📝 Algún día leeremos esto y sonreiremos porque ya lo vivimos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             SECCIÓN: PROMESAS
+             ========================================== -->
+        <div id="seccion-promesas" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Lo que Quiero para Nosotros</h2>
+                <p class="nota-musical">Porque lo nuestro merece cuidado, esfuerzo y dedicación...</p>
+                <div class="mensaje-item">
+                    <p>🌱 Quiero una relación donde crezcamos juntos, no donde uno espere al otro.</p>
+                    <p>🏠 Quiero que seamos hogar el uno para el otro.</p>
+                    <p>🛡️ Quiero protegernos de lo que nos haga daño, incluso de nosotros mismos.</p>
+                    <p>💬 Quiero que siempre podamos hablar, incluso cuando sea incómodo.</p>
+                    <p>🎯 Quiero metas compartidas y sueños entrelazados.</p>
+                    <p>🌊 Quiero navegar juntos las tormentas, no solo los días soleados.</p>
+                    <p>🚪 No me alejaré cuando las cosas se pongan difíciles; me quedaré y lucharé.</p>
+                    <p>♾️ Quiero que lo nuestro no sea perfecto, pero sí inquebrantable.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CIERRE FINAL -->
+        <div style="text-align: center; margin-top: 60px; padding: 30px 0;">
+            <p style="font-family: 'Great Vibes', cursive; font-size: 3em; color: #8B1E3F; margin: 0; text-shadow: 0 2px 15px rgba(139, 30, 63, 0.4); letter-spacing: 1px; line-height: 1.2;">
+                Te quiero demasiado
+            </p>
+            <p style="font-size: 2.5em; margin: 15px 0 0 0; animation: latir 1.5s ease-in-out infinite; display: inline-block; filter: drop-shadow(0 0 20px rgba(232, 93, 117, 0.5));">
+                ❤️
+            </p>
+        </div>
+        
+        <style>
+            @keyframes latir {
+                0%, 100% { transform: scale(1); }
+                25% { transform: scale(1.2); }
+                50% { transform: scale(1); }
+                75% { transform: scale(1.15); }
+            }
+        </style>
+
+        <footer>
+            <p>Hecho con amor (y un poco de código) para ti.</p>
+        </footer>
+    </div>
+
+    <script src="mensajes.js"></script>
+    
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN DE FIREBASE
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyBOR3cepGkx7kKiqiibxF1lUZln1mPnMx8",
+            authDomain: "mensajes-para-ti.firebaseapp.com",
+            projectId: "mensajes-para-ti",
+            storageBucket: "mensajes-para-ti.firebasestorage.app",
+            messagingSenderId: "64754315175",
+            appId: "1:64754315175:web:274990988104ffc9c11082"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
+        // ==========================================
+        // CONTADOR DE DÍAS JUNTOS
+        // ==========================================
+        function cargarContadorDias() {
+            // Fecha de inicio: 11 de Mayo de 2026
+            const fechaInicio = new Date('2026-05-11T00:00:00').getTime();
+            const ahora = new Date().getTime();
+            const diferencia = ahora - fechaInicio;
+            
+            if (diferencia < 0) {
+                document.getElementById('contador-dias').innerHTML = "Aún no empieza...";
+                return;
+            }
+            
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+            
+            document.getElementById('contador-dias').innerHTML = 
+                dias + " días, " + horas + " hrs, " + minutos + " min, " + segundos + " seg";
+        }
+        
+        cargarContadorDias();
+        setInterval(cargarContadorDias, 1000);
+        
+        // ==========================================
+        // CAMBIAR DE SECCIÓN
+        // ==========================================
+        function mostrarSeccion(nombreSeccion) {
+            const secciones = document.querySelectorAll('.seccion-pagina');
+            secciones.forEach(function(seccion) {
+                seccion.classList.remove('activa');
+            });
+            
+            const seccionActiva = document.getElementById('seccion-' + nombreSeccion);
+            if (seccionActiva) {
+                seccionActiva.classList.add('activa');
+            }
+            
+            const botones = document.querySelectorAll('.boton-menu');
+            botones.forEach(function(boton) {
+                boton.classList.remove('activo');
+            });
+            
+            botones.forEach(function(boton) {
+                if (boton.textContent.toLowerCase().includes(nombreSeccion)) {
+                    boton.classList.add('activo');
+                }
+            });
+            
+            window.scrollTo(0, 0);
+        }
+        
+        // ==========================================
+        // MENSAJE SEGÚN LA HORA
+        // ==========================================
+        function cargarMensajePorHora() {
+            const hora = new Date().getHours();
+            let saludo = '';
+            let subSaludo = '';
+            
+            if (hora >= 5 && hora < 12) {
+                saludo = 'Buenos días, mi persona favorita ☀️';
+                subSaludo = 'Si estás viendo esto es porque amanecí pensando en ti.';
+            } else if (hora >= 12 && hora < 19) {
+                saludo = 'Buenas tardes, mi pensamiento favorito 🌤️';
+                subSaludo = 'El sol brilla hoy, pero no tanto como tú.';
+            } else {
+                saludo = 'Buenas noches, mi último y primer pensamiento 🌙';
+                subSaludo = 'Cierra los ojos y sueña conmigo.';
+            }
+            
+            document.getElementById('saludo-hora').innerHTML = saludo;
+            document.getElementById('sub-saludo-hora').innerHTML = subSaludo;
+        }
+        
+        // ==========================================
+        // PELÍCULAS
+        // ==========================================
+        function agregarPelicula() {
+            const input = document.getElementById('nueva-pelicula');
+            const texto = input.value.trim();
+            
+            if (texto === '') {
+                alert('Escribe primero el nombre de una película o serie 🙈');
+                return;
+            }
+            
+            const listaPeliculas = document.getElementById('lista-peliculas');
+            const nuevoElemento = document.createElement('div');
+            nuevoElemento.className = 'mensaje-item';
+            nuevoElemento.style.margin = '10px 0';
+            nuevoElemento.innerHTML = '<p>🎬 "' + texto + '" — Agregada por ti ❤️</p>';
+            
+            listaPeliculas.appendChild(nuevoElemento);
+            
+            const peliculasGuardadas = JSON.parse(localStorage.getItem('peliculas') || '[]');
+            peliculasGuardadas.push(texto);
+            localStorage.setItem('peliculas', JSON.stringify(peliculasGuardadas));
+            
+            input.value = '';
+        }
+        
+        function cargarPeliculasGuardadas() {
+            const peliculasGuardadas = JSON.parse(localStorage.getItem('peliculas') || '[]');
+            const listaPeliculas = document.getElementById('lista-peliculas');
+            
+            peliculasGuardadas.forEach(function(pelicula) {
+                const nuevoElemento = document.createElement('div');
+                nuevoElemento.className = 'mensaje-item';
+                nuevoElemento.style.margin = '10px 0';
+                nuevoElemento.innerHTML = '<p>🎬 "' + pelicula + '" — Agregada por ti ❤️</p>';
+                listaPeliculas.appendChild(nuevoElemento);
+            });
+        }
+        
+        // ==========================================
+        // PREGUNTAS EN FIREBASE
+        // ==========================================
+        function agregarPregunta() {
+            const input = document.getElementById('nueva-pregunta');
+            const texto = input.value.trim();
+            
+            if (texto === '') {
+                alert('Escribe primero una pregunta 🙈');
+                return;
+            }
+            
+            db.collection('preguntas').add({
+                pregunta: texto,
+                respuesta: '',
+                fecha: new Date().toLocaleDateString('es-ES'),
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(function() {
+                input.value = '';
+                alert('✅ Pregunta agregada');
+            }).catch(function(error) {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar.');
+            });
+        }
+        
+        db.collection('preguntas')
+            .orderBy('timestamp', 'asc')
+            .onSnapshot(function(snapshot) {
+                const contenedor = document.getElementById('lista-preguntas');
+                
+                if (snapshot.empty) {
+                    contenedor.innerHTML = '<p style="color: #A09888; font-style: italic; text-align: center;">Aún no hay preguntas.</p>';
+                    return;
+                }
+                
+                let html = '';
+                snapshot.forEach(function(doc) {
+                    const data = doc.data();
+                    html += '<div class="pregunta-item" style="text-align: left;">';
+                    html += '<label style="font-family: \'Cormorant Garamond\', serif; color: #8B1E3F; font-size: 1.2em; display: block; margin-bottom: 10px;">✦ ' + data.pregunta + '</label>';
+                    html += '<textarea placeholder="Escribe tu respuesta aquí..." rows="3" style="width: 100%; background-color: #FFF8E7; color: #3D3D3D; border: 1px solid #F0D080; border-radius: 5px; padding: 12px; font-family: \'Cormorant Garamond\', serif; font-size: 1em; resize: vertical; box-sizing: border-box;" onchange="guardarRespuesta(\'' + doc.id + '\', this.value)">' + (data.respuesta || '') + '</textarea>';
+                    html += '</div>';
+                });
+                
+                contenedor.innerHTML = html;
+            });
+        
+        function guardarRespuesta(id, respuesta) {
+            db.collection('preguntas').doc(id).update({
+                respuesta: respuesta
+            });
+        }
+        
+        // ==========================================
+        // MENSAJES EN FIREBASE
+        // ==========================================
+        function guardarMensajeCompartido() {
+            const textarea = document.getElementById('mensaje-compartido');
+            const texto = textarea.value.trim();
+            
+            if (texto === '') {
+                alert('Escribe primero tu mensaje 🙈');
+                return;
+            }
+            
+            const ahora = new Date();
+            const fechaFormateada = ahora.toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            db.collection('mensajes').add({
+                texto: texto,
+                fecha: fechaFormateada,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(function() {
+                textarea.value = '';
+                alert('✅ Mensaje guardado con amor');
+            }).catch(function(error) {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar.');
+            });
+        }
+        
+        db.collection('mensajes')
+            .orderBy('timestamp', 'desc')
+            .limit(50)
+            .onSnapshot(function(snapshot) {
+                const contenedor = document.getElementById('lista-mensajes-compartidos');
+                
+                if (snapshot.empty) {
+                    contenedor.innerHTML = '<p style="color: #A09888; font-style: italic; text-align: center;">Aún no hay mensajes escritos...</p>';
+                    return;
+                }
+                
+                let html = '';
+                snapshot.forEach(function(doc) {
+                    const mensaje = doc.data();
+                    html += '<div class="mensaje-item">';
+                    html += '<p class="fecha-mensaje">💌 ' + mensaje.fecha + '</p>';
+                    html += '<p>' + mensaje.texto + '</p>';
+                    html += '</div>';
+                });
+                
+                contenedor.innerHTML = html;
+            });
+        
+        // Cargar todo al iniciar
+        cargarMensajePorHora();
+        cargarPeliculasGuardadas();
+    </script>
+</body>
+</html>
