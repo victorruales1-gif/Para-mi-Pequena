@@ -42,6 +42,8 @@
             <button class="boton-menu" onclick="mostrarSeccion('lugares')">🗺️ Lugares</button>
             <button class="boton-menu" onclick="mostrarSeccion('recuerdos')">🌟 Recuerdos</button>
             <button class="boton-menu" onclick="mostrarSeccion('promesas')">💛 Promesas</button>
+            <button class="boton-menu" onclick="mostrarSeccion('suenos')">✨ Sueños</button>
+            <button class="boton-menu" onclick="mostrarSeccion('sorpresas')">🎁 Sorpresas</button>
         </div>
 
         <!-- ==========================================
@@ -176,9 +178,6 @@
                 <p class="nota-musical">Agrega las películas o series que quieras ver conmigo...</p>
                 <div id="lista-peliculas">
                     <div class="mensaje-item">
-                        <p>🎬 "Cuestión de Tiempo" — Porque el tiempo contigo es mi favorito.</p>
-                        <p>🎬 "Antes de Amanecer" — Para caminar y hablar sin parar.</p>
-                        <p>🎬 "La La Land" — Para cantar y soñar despiertos.</p>
                         <p>🎬 "Up" — Para recordar que el amor es la aventura más grande.</p>
                     </div>
                 </div>
@@ -192,23 +191,74 @@
         <!-- ==========================================
              SECCIÓN: LUGARES
              ========================================== -->
-        <div id="seccion-lugares" class="seccion-pagina">
+               <div id="seccion-lugares" class="seccion-pagina">
             <div class="seccion">
                 <h2>Lugares que Mi Corazón Quiere Recorrer Contigo</h2>
                 <p class="nota-musical">El destino no importa si vamos de la mano...</p>
-                <div class="mensaje-item">
-                    <p>🌅 Ver el atardecer en una playa sin nombre</p>
-                    <p>☕ Un café en una calle escondida de París</p>
-                    <p>🌌 Contar estrellas en el desierto</p>
-                    <p>🎵 Bailar bajo la lluvia en cualquier ciudad</p>
-                    <p>🚗 Perdernos en una carretera sin GPS</p>
-                    <p>🏔️ Ver la nieve por primera vez juntos</p>
-                    <p>🎡 Un parque de diversiones para ser niños otra vez</p>
-                    <p>📚 Una librería antigua donde el tiempo se detenga</p>
+                
+                <div id="lista-lugares">
+                    <div class="mensaje-item">
+                        <p>🌅 Ver el atardecer en una playa sin nombre</p>
+                        <p>☕ Un café en una calle escondida de París</p>
+                        <p>🌌 Contar estrellas en el desierto</p>
+                        <p>🎵 Bailar bajo la lluvia en cualquier ciudad</p>
+                        <p>🏔️ Ver la nieve por primera vez juntos</p>
+                        <p>🎡 Un parque de diversiones para ser niños otra vez</p>
+                    </div>
+                </div>
+                
+                <div class="agregar-pelicula" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <input type="text" id="nuevo-lugar" placeholder="Escribe un lugar que quieras visitar..." style="flex: 1; padding: 10px; border: 1px solid #F0D080; border-radius: 5px; background-color: #FFF8E7;" />
+                    <button onclick="agregarLugar()" style="background-color: #8B1E3F; color: #FFFFFF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-weight: bold;">Agregar ➕</button>
+                </div>
+            </div>
+        </div>
+        <!-- ==========================================
+             SECCIÓN: NUESTROS SUEÑOS
+             ========================================== -->
+        <div id="seccion-suenos" class="seccion-pagina">
+            <div class="seccion">
+                <h2>Nuestros Sueños</h2>
+                <p class="nota-musical">Las metas que queremos alcanzar juntos...</p>
+                
+                <div id="lista-suenos">
+                    <div class="mensaje-item">
+                        <p>✨ Construir un hogar lleno de risas y paz.</p>
+                        <p>✈️ Viajar a un lugar que ninguno de los dos conozca.</p>
+                        <p>🌱 Crecer juntos, apoyándonos en cada meta.</p>
+                    </div>
+                </div>
+                
+                <div class="agregar-pelicula" style="display: flex; gap: 10px; margin-top: 15px;">
+                    <input type="text" id="nuevo-sueno" placeholder="Escribe un sueño que tengas conmigo..." style="flex: 1; padding: 10px; border: 1px solid #F0D080; border-radius: 5px; background-color: #FFF8E7;" />
+                    <button onclick="agregarSueno()" style="background-color: #8B1E3F; color: #FFFFFF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-weight: bold;">Agregar ➕</button>
                 </div>
             </div>
         </div>
 
+                <!-- ==========================================
+             SECCIÓN: SORPRESAS
+             ========================================== -->
+        <div id="seccion-sorpresas" class="seccion-pagina">
+            <div class="seccion" style="text-align: center; margin-top: 40px;">
+                <button onclick="mostrarSecreto()" 
+                        style="background-color: #d4af37; 
+                               color: #1a1a1a; 
+                               border: none; 
+                               padding: 18px 35px; 
+                               font-family: 'Cormorant Garamond', serif; 
+                               font-size: 1.4em; 
+                               border-radius: 50px; 
+                               cursor: pointer;
+                               font-weight: bold;
+                               box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+                               transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='scale(1.05)'"
+                        onmouseout="this.style.transform='scale(1)'">
+                    💛 Tócame si quieres saber un secreto
+                </button>
+            </div>
+        </div>
         <!-- ==========================================
              SECCIÓN: RECUERDOS
              ========================================== -->
@@ -273,6 +323,11 @@
         </footer>
     </div>
 
+    <!-- Contenedor para el Lightbox (Imagen agrandada) -->
+    <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+        <img id="lightbox-img" src="" alt="Imagen agrandada">
+    </div>
+
     <script src="mensajes.js"></script>
     
     <script>
@@ -291,6 +346,30 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         
+        // ==========================================
+        // CARGAR PREGUNTAS BASE (Solo la primera vez)
+        // ==========================================
+        db.collection('preguntas-pequena').get().then((querySnapshot) => {
+            if (querySnapshot.empty) {
+                const preguntasBase = [
+                    "¿Qué es lo primero que pensaste cuando me viste?",
+                    "¿Cuál es tu recuerdo favorito conmigo?",
+                    "¿Qué canción te recuerda a mí?",
+                    "¿A dónde te gustaría viajar conmigo?",
+                    "¿Qué es algo que siempre has querido hacer pero nunca te has atrevido?",
+                    "¿Cuál es tu recuerdo favorito de tu infancia?",
+                    "¿Qué te hace sonreír sin importar lo que pase?"
+                ];
+                preguntasBase.forEach(pregunta => {
+                    db.collection('preguntas-pequena').add({
+                        pregunta: pregunta,
+                        respuesta: '',
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                });
+            }
+        });
+
         // ==========================================
         // CONTADOR DE DÍAS JUNTOS
         // ==========================================
@@ -367,8 +446,8 @@
             document.getElementById('sub-saludo-hora').innerHTML = subSaludo;
         }
         
-        // ==========================================
-        // PELÍCULAS
+               // ==========================================
+        // PELÍCULAS EN FIREBASE (COLECCIÓN SEPARADA)
         // ==========================================
         function agregarPelicula() {
             const input = document.getElementById('nueva-pelicula');
@@ -379,36 +458,143 @@
                 return;
             }
             
-            const listaPeliculas = document.getElementById('lista-peliculas');
-            const nuevoElemento = document.createElement('div');
-            nuevoElemento.className = 'mensaje-item';
-            nuevoElemento.style.margin = '10px 0';
-            nuevoElemento.innerHTML = '<p>🎬 "' + texto + '" — Agregada por ti ❤️</p>';
-            
-            listaPeliculas.appendChild(nuevoElemento);
-            
-            const peliculasGuardadas = JSON.parse(localStorage.getItem('peliculas') || '[]');
-            peliculasGuardadas.push(texto);
-            localStorage.setItem('peliculas', JSON.stringify(peliculasGuardadas));
-            
-            input.value = '';
-        }
-        
-        function cargarPeliculasGuardadas() {
-            const peliculasGuardadas = JSON.parse(localStorage.getItem('peliculas') || '[]');
-            const listaPeliculas = document.getElementById('lista-peliculas');
-            
-            peliculasGuardadas.forEach(function(pelicula) {
-                const nuevoElemento = document.createElement('div');
-                nuevoElemento.className = 'mensaje-item';
-                nuevoElemento.style.margin = '10px 0';
-                nuevoElemento.innerHTML = '<p>🎬 "' + pelicula + '" — Agregada por ti ❤️</p>';
-                listaPeliculas.appendChild(nuevoElemento);
+            db.collection('peliculas-pequena').add({
+                titulo: texto,
+                fecha: new Date().toLocaleDateString('es-ES'),
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(function() {
+                input.value = '';
+                // No hace falta recargar nada, Firebase lo hace solo
+            }).catch(function(error) {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar la película.');
             });
         }
         
+        // Escuchar cambios en tiempo real de las películas
+        db.collection('peliculas-pequena')
+            .orderBy('timestamp', 'asc')
+            .onSnapshot(function(snapshot) {
+                const listaPeliculas = document.getElementById('lista-peliculas');
+                if (!listaPeliculas) return;
+                
+                // Limpiamos la lista, dejando solo el contenedor base
+                listaPeliculas.innerHTML = '<div class="mensaje-item" id="contenedor-base-peliculas">' +
+                    '<p>🎬 "Up" — Para recordar que el amor es la aventura más grande.</p>' +
+                    '</div>';
+                
+                const contenedorBase = document.getElementById('contenedor-base-peliculas');
+                
+                snapshot.forEach(function(doc) {
+                    const data = doc.data();
+                    const nuevoElemento = document.createElement('div');
+                    nuevoElemento.className = 'mensaje-item';
+                    nuevoElemento.style.margin = '10px 0';
+                    // Le agregamos un pequeño emoji para saber que fue agregada por ustedes
+                    nuevoElemento.innerHTML = '<p>🍿 "' + data.titulo + '" — Agregada por nosotros ❤️</p>';
+                    listaPeliculas.appendChild(nuevoElemento);
+                });
+            });
+                // ==========================================
+        // LUGARES EN FIREBASE (COLECCIÓN SEPARADA)
         // ==========================================
-        // PREGUNTAS EN FIREBASE
+        function agregarLugar() {
+            const input = document.getElementById('nuevo-lugar');
+            const texto = input.value.trim();
+            
+            if (texto === '') {
+                alert('Escribe primero un lugar 🙈');
+                return;
+            }
+            
+            db.collection('lugares-pequena').add({
+                lugar: texto,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(function() {
+                input.value = '';
+            }).catch(function(error) {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar el lugar.');
+            });
+        }
+        
+        db.collection('lugares-pequena')
+            .orderBy('timestamp', 'asc')
+            .onSnapshot(function(snapshot) {
+                const lista = document.getElementById('lista-lugares');
+                if (!lista) return;
+                
+                // Mantenemos los lugares base
+                lista.innerHTML = '<div class="mensaje-item" id="lugares-base">' +
+                    '<p>🌅 Ver el atardecer en una playa sin nombre</p>' +
+                    '<p>☕ Un café en una calle escondida de París</p>' +
+                    '<p>🌌 Contar estrellas en el desierto</p>' +
+                    '<p>🎵 Bailar bajo la lluvia en cualquier ciudad</p>' +
+                    '<p>🏔️ Ver la nieve por primera vez juntos</p>' +
+                    '<p>🎡 Un parque de diversiones para ser niños otra vez</p>' +
+                    '</div>';
+                
+                const base = document.getElementById('lugares-base');
+                
+                snapshot.forEach(function(doc) {
+                    const data = doc.data();
+                    const nuevo = document.createElement('div');
+                    nuevo.className = 'mensaje-item';
+                    nuevo.style.margin = '10px 0';
+                    nuevo.innerHTML = '<p>📍 "' + data.lugar + '" — Agregado por nosotros ❤️</p>';
+                    lista.appendChild(nuevo);
+                });
+            });
+
+        // ==========================================
+        // SUEÑOS EN FIREBASE (COLECCIÓN SEPARADA)
+        // ==========================================
+        function agregarSueno() {
+            const input = document.getElementById('nuevo-sueno');
+            const texto = input.value.trim();
+            
+            if (texto === '') {
+                alert('Escribe primero un sueño 🙈');
+                return;
+            }
+            
+            db.collection('suenos-pequena').add({
+                sueno: texto,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(function() {
+                input.value = '';
+            }).catch(function(error) {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar el sueño.');
+            });
+        }
+        
+        db.collection('suenos-pequena')
+            .orderBy('timestamp', 'asc')
+            .onSnapshot(function(snapshot) {
+                const lista = document.getElementById('lista-suenos');
+                if (!lista) return;
+                
+                // Mantenemos los sueños base
+                lista.innerHTML = '<div class="mensaje-item" id="suenos-base">' +
+                    '<p>✨ Construir un hogar lleno de risas y paz.</p>' +
+                    '<p>✈️ Viajar a un lugar que ninguno de los dos conozca.</p>' +
+                    '<p>🌱 Crecer juntos, apoyándonos en cada meta.</p>' +
+                    '</div>';
+                
+                const base = document.getElementById('suenos-base');
+                
+                snapshot.forEach(function(doc) {
+                    const data = doc.data();
+                    const nuevo = document.createElement('div');
+                    nuevo.className = 'mensaje-item';
+                    nuevo.style.margin = '10px 0';
+                    nuevo.innerHTML = '<p>🌟 "' + data.sueno + '" — Soñado por nosotros ❤️</p>';
+                    lista.appendChild(nuevo);
+                });
+            });
+        // ==========================================
+        // PREGUNTAS EN FIREBASE (COLECCIÓN SEPARADA)
         // ==========================================
         function agregarPregunta() {
             const input = document.getElementById('nueva-pregunta');
@@ -419,7 +605,7 @@
                 return;
             }
             
-            db.collection('preguntas').add({
+            db.collection('preguntas-pequena').add({
                 pregunta: texto,
                 respuesta: '',
                 fecha: new Date().toLocaleDateString('es-ES'),
@@ -429,14 +615,15 @@
                 alert('✅ Pregunta agregada');
             }).catch(function(error) {
                 console.error('Error:', error);
-                alert('Hubo un error al guardar.');
+                alert('Hubo un error al guardar. Revisa las reglas de Firebase.');
             });
         }
         
-        db.collection('preguntas')
+        db.collection('preguntas-pequena')
             .orderBy('timestamp', 'asc')
             .onSnapshot(function(snapshot) {
                 const contenedor = document.getElementById('lista-preguntas');
+                if (!contenedor) return;
                 
                 if (snapshot.empty) {
                     contenedor.innerHTML = '<p style="color: #A09888; font-style: italic; text-align: center;">Aún no hay preguntas.</p>';
@@ -456,13 +643,13 @@
             });
         
         function guardarRespuesta(id, respuesta) {
-            db.collection('preguntas').doc(id).update({
+            db.collection('preguntas-pequena').doc(id).update({
                 respuesta: respuesta
             });
         }
         
         // ==========================================
-        // MENSAJES EN FIREBASE
+        // MENSAJES EN FIREBASE (COLECCIÓN SEPARADA)
         // ==========================================
         function guardarMensajeCompartido() {
             const textarea = document.getElementById('mensaje-compartido');
@@ -482,7 +669,7 @@
                 minute: '2-digit'
             });
             
-            db.collection('mensajes').add({
+            db.collection('mensajes-pequena').add({
                 texto: texto,
                 fecha: fechaFormateada,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -495,7 +682,7 @@
             });
         }
         
-        db.collection('mensajes')
+        db.collection('mensajes-pequena')
             .orderBy('timestamp', 'desc')
             .limit(50)
             .onSnapshot(function(snapshot) {
@@ -520,7 +707,12 @@
         
         // Cargar todo al iniciar
         cargarMensajePorHora();
-        cargarPeliculasGuardadas();
+               // ==========================================
+        // FUNCIÓN DEL BOTÓN SECRETO
+        // ==========================================
+        function mostrarSecreto() {
+            alert("Mirarte es soplar las velas teniendo el deseo en frente ❤️");
+        }
     </script>
 </body>
 </html>
