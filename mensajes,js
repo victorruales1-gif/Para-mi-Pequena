@@ -17,14 +17,14 @@ const fotosNosotros = [
     // Agrega más fotos de ustedes aquí, separadas por coma
 ];
 
-// ==========================================
+/// ==========================================
 // GALERÍA: IMÁGENES QUE ME RECUERDAN A TI
 // ==========================================
 const imagenesRecuerdos = [
-    { imagen: "https://i.imgur.com/xyz3BRF.jpeg" },
-    { imagen: "https://i.imgur.com/emfM6li.jpeg" },
-    { imagen: "https://i.imgur.com/B1mID8S.jpeg" },
-    { imagen: "https://i.imgur.com/ElazJlW.jpeg" }
+    { imagen: "https://i.imgur.com/xyz3BRF.jpg" },
+    { imagen: "https://i.imgur.com/emfM6li.jpg" },
+    { imagen: "https://i.imgur.com/B1mID8S.jpg" },
+    { imagen: "https://i.imgur.com/ElazJlW.jpg" }
 ];
 
 // 3. TUS POEMAS Y MENSAJES
